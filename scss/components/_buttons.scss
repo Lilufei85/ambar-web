@@ -1,0 +1,66 @@
+.button-call-action {
+    border: solid 2px;
+    border-color: $color-2;
+    @include typos ($font-1, 1.2rem, $color-2);
+    background-color: white;
+    border-radius: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 25px;
+    font-weight: 400;
+    width: 300px;
+    height: 25px;
+    align-self: center;
+}
+
+.animacion-button {
+    animation-name: vibrarC; /*** A N I M A C I O N   BOTÓN SIMULADOR ***/
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+.button-navbar {
+    @extend .button-call-action;
+    width: 90px;
+    margin-top: 0px;
+    a {
+        text-decoration: none;
+    }
+}
+
+
+.button-como-llegar {
+    border: solid 2px;
+    border-color: $color-2;
+    border-radius: 7px;
+    @include typos ($font-1, 1.2rem, $color-4);
+    background-color: $color-2;
+    text-decoration: none;
+    cursor: pointer;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 25px;
+    font-weight: 400;
+    align-self: center;
+}
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366; /* Color de fondo de WhatsApp */
+    color: #f1e9e9;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 1000;
+    text-decoration: none;
+}

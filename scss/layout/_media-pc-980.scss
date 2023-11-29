@@ -1,0 +1,29 @@
+@media (min-width: 980px) {
+    .menu {
+        //overflow: hidden;
+        display: flex;
+        a {
+            @include flex (row, flex-end);
+            align-items: flex-end;
+            padding: 14px 16px;
+            text-decoration: none;
+            @include typos ($font-1, 1.4rem, $color-2);
+        }
+    }
+
+    .toggle  {
+        display: none;
+        }
+
+    .container-BotonYLinks {
+        @include flex (row, center);    
+    }
+    
+    .container-MenuYBoton {
+        order:2;
+    }
+
+    .containerMenu {
+        order: 1;
+    }
+}

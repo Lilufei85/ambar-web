@@ -1,0 +1,21 @@
+footer {
+    background-color: $color-4;
+    text-align: center;
+    padding-top: 25px;
+    margin-top: 30px;
+    padding-bottom: 20px;
+    p {
+        @include typos ($font-1, 1.5rem, $color-1);
+    }ul { /***  F L E X B O X  ***/
+        @include flex (row,center);
+        flex-wrap: nowrap;
+        gap: 20px;
+        text-align: center;
+        size: adjust 100px; 
+        list-style: none;
+        margin-bottom: 10px;
+        a {
+            text-decoration: none; 
+        }
+    }
+}

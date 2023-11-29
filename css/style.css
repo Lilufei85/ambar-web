@@ -1,0 +1,374 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+
+/*$color-2 = background footer, textos grales*/
+/*$color-2 = typo footer*/
+h1, h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.7rem;
+  color: #956852;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 600; }
+
+p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.4rem;
+  color: #956852;
+  text-align: center; }
+
+.negrita {
+  font-weight: 600; }
+
+.italic {
+  font-style: italic; }
+
+.turquesa {
+  color: #175754; }
+
+.doce {
+  font-size: 1.2rem; }
+
+.centrado-vertical {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center; }
+
+@keyframes vibrarC {
+  /*** A N I M A C I O N   D E S C A R G A    C V ***/
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0); }
+  20% {
+    -webkit-transform: translate(2px, -2px);
+    transform: translate(2px, -2px); }
+  40% {
+    -webkit-transform: translate(2px, 2px);
+    transform: translate(2px, 2px); }
+  60% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px); }
+  80% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px); }
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0); } }
+
+.navbar {
+  padding-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+.container-BotonYLinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* column-gap: 15px;  
+    align-items: center; */ }
+
+.container-MenuYBoton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  column-gap: 15px;
+  align-items: center; }
+
+.logo-navbar {
+  width: 50px; }
+
+.toggle img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer; }
+
+.menu {
+  display: none; }
+  .menu a {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.4rem;
+    color: #956852; }
+
+.show {
+  display: block; }
+
+.button-call-action, .button-navbar {
+  border: solid 2px;
+  border-color: #956852;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  color: #956852;
+  background-color: white;
+  border-radius: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 25px;
+  font-weight: 400;
+  width: 300px;
+  height: 25px;
+  align-self: center; }
+
+.animacion-button {
+  animation-name: vibrarC;
+  /*** A N I M A C I O N   BOTÓN SIMULADOR ***/
+  animation-duration: 3s;
+  animation-iteration-count: infinite; }
+
+.button-navbar {
+  width: 90px;
+  margin-top: 0px; }
+  .button-navbar a {
+    text-decoration: none; }
+
+.button-como-llegar {
+  border: solid 2px;
+  border-color: #956852;
+  border-radius: 7px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  color: #C7B6BA;
+  background-color: #956852;
+  text-decoration: none;
+  cursor: pointer;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 25px;
+  font-weight: 400;
+  align-self: center; }
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  /* Color de fondo de WhatsApp */
+  color: #f1e9e9;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1000;
+  text-decoration: none; }
+
+body {
+  height: 100vh; }
+
+.logo-index {
+  width: 45%;
+  height: auto;
+  padding: 10px;
+  margin: 5vh; }
+
+/*.centrado-vertical{
+    @include flex (row, center);  
+    BORRAR LOS CENTRADOS VERTICALES Q POR AHORA NO SE NECESITA  
+}
+*/
+.flex-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 30px; }
+
+.w-100 {
+  width: 100%; }
+
+.textos {
+  margin-left: 40px;
+  margin-right: 40px; }
+
+.width-55 {
+  width: 55%; }
+
+.width-70 {
+  width: 70%; }
+
+.contenedor-ig {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  row-gap: 4px;
+  column-gap: 5px; }
+
+.img-ig {
+  border-color: #FFFAF8;
+  width: 160px;
+  height: 160px; }
+
+.contenedor-evento {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 20px; }
+
+.cuadrante-izq-evento {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 0;
+  width: 50%; }
+  .cuadrante-izq-evento ul li p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.4rem;
+    color: #956852;
+    text-align: flex-end; }
+
+.cuadrante-der-evento {
+  width: 50%; }
+  .cuadrante-der-evento ul li {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1rem;
+    color: #956852; }
+
+li {
+  list-style: none; }
+
+.title-evento {
+  font-weight: 600; }
+
+.flex-end {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; }
+
+footer {
+  background-color: #C7B6BA;
+  text-align: center;
+  padding-top: 25px;
+  margin-top: 30px;
+  padding-bottom: 20px; }
+  footer p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+    color: #FFFAF8; }
+  footer ul {
+    /***  F L E X B O X  ***/
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 20px;
+    text-align: center;
+    size: adjust 100px;
+    list-style: none;
+    margin-bottom: 10px; }
+    footer ul a {
+      text-decoration: none; }
+
+input, select {
+  outline: none;
+  border: 1px solid #C7B6BA;
+  border-radius: 5px;
+  height: 25px;
+  width: 100%;
+  padding-left: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  color: #956852; }
+  input:focus, select:focus {
+    outline: none;
+    border: 1px solid #C7B6BA; }
+
+.contendor-reservas {
+  /***  F L E X B O X  ***/
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 30px; }
+
+.formulario-reservas {
+  /***  F L E X B O X  ***/
+  width: 70%;
+  padding: 25px;
+  line-height: 40px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center; }
+  .formulario-reservas label {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+    color: #C7B6BA; }
+
+.flex-newsletter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.flex-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; }
+
+.button-reserva {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  color: #FFFAF8;
+  background-color: #C7B6BA;
+  border: none;
+  border-radius: 7px;
+  text-decoration: none;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 400;
+  height: 38px;
+  align-self: flex-end;
+  margin-top: 10px; }
+
+.size-logo-reserva {
+  width: 10%; }
+
+/*fin reglas especiales r3eservas*/
+@media (min-width: 980px) {
+  .menu {
+    display: flex; }
+    .menu a {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: flex-end;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.4rem;
+      color: #956852; }
+  .toggle {
+    display: none; }
+  .container-BotonYLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; }
+  .container-MenuYBoton {
+    order: 2; }
+  .containerMenu {
+    order: 1; } }

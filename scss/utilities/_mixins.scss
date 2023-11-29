@@ -1,0 +1,23 @@
+@mixin flex ($direction,$justify){
+    display: flex;
+    flex-direction:$direction;
+    justify-content:$justify;
+}
+
+@mixin typos ($family, $size, $color) {
+    font-family: $family;
+    font-size: $size;
+    color:$color;
+}
+
+@mixin medidas ($width, $height, $padd, $margin){
+    width: $width;
+    height: $height;
+    padding: $padd;
+    margin: $margin;
+}
+
+@mixin focus-formulario {
+    outline: none;
+    border: 1px solid $color-4;  
+} 

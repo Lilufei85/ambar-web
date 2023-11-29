@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AMBAR, posada boutique"> 
+    <meta name="author" content="Lilaj Feiguin">
+    <meta name="copyright" content="Ambar Posada">
+    <meta property="og: title" content="Ambar Posada Boutique">
+    <meta property="og: description" content="Una posada única locada en Sierras de Aiguá, Maldonado, Uruguay. Entrá y conocenos">
+    <meta property="og: image" content="">
+    <meta property="og: url" content="">
+    <title> </title>
+    <link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+
+<body class="body">
+    
+    <header>
+        <div>
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="#"><img src="../assets/img/logo.png" class="logo-navbar" alt=""></a>
+                </div>
+                <div class="container-BotonYLinks">
+                    <div class="container-MenuYBoton">
+                        <div>
+                            <button id= reservarViaTransfe class="button-navbar"> RESERVAR</button>
+                        </div>
+                        <div class="toggle">
+                            <img src="../assets/icons/toggle.png" alt="Ícono del menú" id="menuIcon">
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="menu" id="navbarMenu">
+                            <li><a href="../index.html">Posada</a></li>
+                            <li><a href="../pages/habitaciones.html">Habitaciones</a></li>
+                            <li><a href="../pages/actividadesyterapias.html">Actividades y terapias</a></li>
+                            <li><a href="../pages/gastronomia.html">Gastronomía</a></li>
+                            <li><a href="../pages/programacion.html">Programación</a></li>
+                            <li><a href="../pages/experiencias.html">Experiencias</a></li>
+                            <li><a href="../pages/reservas.html">Reservas</a></li>
+                            <li><a href="#">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="centrado-vertical animacion-button">
+            <button id= reservarViaTransfe class="button-call-action"> <span class="negrita">SIMULADOR</span>: Reserva aquí con descuento</button>
+        </div>
+        <div class="centrado-vertical animacion-button">
+            <button id= buscarReserva class="button-call-action"> <span class="negrita">SIMULADOR</span>: Consultá tu reserva </button>
+        </div>
+        <div id="divReservas">
+
+        </div>
+
+
+
+        <div class="flex-main">
+            <section class="contendor-reservas">
+                <form action="" class="formulario-reservas">
+                    <label for="nombre" class="label-nombre">
+                        <span>Nombre: </span>
+                        <input type="text"name="nombre" class="input-nombre" autocomplete="Tu nombre" required/> 
+                    </label> 
+                    <label for="apellido" class="label-apellido">
+                        <span>Apellido: </span>
+                        <input type="text"name="apellido" class="input-apellido" autocomplete="Tu apellido" required/> 
+                    </label> 
+                    <label for="idias" class="label-idias">
+                        <span>Cantidad de días: </span>
+                        <input type="text"name="idias" class="input-idias" autocomplete="Ingresa aquí el número de días" required/> 
+                    </label> 
+                    <label for="ihuesped" class="label-ihuesped">
+                        <span>Cantidad de huéspedes: </span>
+                        <input type="text"name="ihuesped" class="input-ihuesped" autocomplete="Ingresa aquí cantidad de huéspedes" required/> 
+                    </label> 
+                    <label for="email" class="label-email">E-mail: 
+                        <input type="email" id="email" name="email" class="input-email" autocomplete="email" required/>  
+                    </label>   
+                    <div class="flex-button">
+                        <button type="submit" class="button-reserva">Reservar</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <div>
+            <section class="contendor-busqueda" >
+                <form action="" class="formulario-reservas" id="formBusquedaReserva">
+                    <div>
+                        <p>Buscar por nombre y apellido:</p>
+                        <label for="nombre" class="label-nombre">
+                            <span>Nombre: </span>
+                            <input type="text"name="nombre" class="input-nombre" autocomplete="Tu nombre" required/> 
+                        </label> 
+                        <label for="apellido" class="label-apellido">
+                            <span>Apellido: </span>
+                            <input type="text"name="apellido" class="input-apellido" autocomplete="Tu apellido" required/> 
+                        </label>
+                        <div class="flex-button">
+                            <button type="submit" id="busquedaNombreApellido">Buscar</button>
+                        </div> 
+                    </div>
+                    <div>
+                        <p>Buscar por número de reserva:</p>
+                        <label for="idias" class="label-idias">
+                            <span>Cantidad de días: </span>
+                            <input type="text"name="idias" class="input-idias" autocomplete="Ingresa aquí el número de días" required/> 
+                        </label>
+                        <div class="flex-button">
+                            <button type="submit" id="busquedaNroReserva">Buscar</button>
+                        </div> 
+                    </div>
+                </form>
+            </section>
+        </div>
+        <div>
+            <a target="_blank" href="https://wa.me/5491150373278?text=Hola"> <img src="../assets/icons/whatsapp.png" alt="Whatsapp" class="whatsapp-button">
+        </div>
+
+    </main> 
+    
+    <footer>
+        <div class="footer">
+            <ul>
+                <!--aquí falta cambiar los colores de los íconos y el footer en general. Y definír estilos. Cambiar wapp y email-->
+                <li><a target="_blank" href="https://www.instagram.com/ambar_posada/="><img src="../assets/icons/instagram.png" alt="Instagram" class="footer-icon"> </a></li>   
+                <li><a target="_blank" href="mailto:adamfeiguin@gmail.com"> <img src="../assets/icons/email.png" alt="Email" class="footer-icon"></a></li>
+                <li><a target="_blank" href="https://wa.me/5491150373278?text=Hola"> <img src="../assets/icons/whatsapp.png" alt="Whatsapp" class="footer-icon"> </a></li>
+            </ul>
+            <p>&copy; 2024. Ambar Posada Boutique. <br> Todos los derechos reservados</p>
+        </div>
+    </footer>
+    <script defer src="../js/app.js" async> </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+
+
+
+h1 {
+    @include typos ($font-1, 1.7rem, $color-2);
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 600;
+}
+
+h2 {
+    @extend h1;
+}
+
+p {
+    @include typos ($font-1, 1.4rem, $color-2);
+    text-align: center;
+}
+
+.negrita {
+    font-weight: 600;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.turquesa {
+    color: $color-7;
+}
+
+.doce {
+    font-size: 1.2rem;;
+}

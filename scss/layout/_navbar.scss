@@ -1,0 +1,43 @@
+.navbar {
+    padding-top: 15px;
+    @include flex (row, space-between);
+}
+
+.container-BotonYLinks {
+    @include flex (column, flex-end); 
+    /* column-gap: 15px;  
+    align-items: center; */
+}
+
+.container-MenuYBoton {
+    @include flex (row, flex-end); 
+    column-gap: 15px;  
+    align-items: center;
+}
+
+.logo-navbar {
+    width: 50px;
+}
+
+.toggle img {
+    width: 40px; 
+    height: 40px; 
+    cursor: pointer;
+    }
+
+.menu {
+    //overflow: hidden;
+    display: none;
+    a {
+        @include flex (column, flex-end);
+        align-items: flex-end;
+        padding: 14px 16px;
+        text-decoration: none;
+        @include typos ($font-1, 1.4rem, $color-2);
+    }
+}
+
+.show {
+    display: block;
+}
+

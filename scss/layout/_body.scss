@@ -1,0 +1,85 @@
+body {
+    height: 100vh;
+}
+
+.logo-index {
+    @include medidas (45%, auto, 10px, 5vh);
+}
+
+/*.centrado-vertical{
+    @include flex (row, center);  
+    BORRAR LOS CENTRADOS VERTICALES Q POR AHORA NO SE NECESITA  
+}
+*/
+.flex-main {
+    @include flex (column, center);
+    align-items: center; 
+    row-gap: 30px;  
+} 
+
+.w-100{
+    width:100%;
+}
+
+.textos {
+    margin-left:40px ;
+    margin-right:40px ;
+}
+
+.width-55 {
+    width: 55%;   
+}
+
+.width-70 {
+    width: 70%;
+}
+
+.contenedor-ig {
+    @include flex (row, center);
+    flex-wrap: wrap;
+    width: 100%;
+    row-gap: 4px;
+    column-gap: 5px;
+}
+
+.img-ig {
+    border-color: $color-1;
+    width: 160px;
+    height: 160px;
+}
+
+.contenedor-evento {
+    @include flex (row, space-evenly);
+    gap: 20px;
+}
+
+.cuadrante-izq-evento {
+    @include flex (column, flex-start);
+    align-items: flex-end;
+    gap:0;
+    width: 50%;
+    ul li p {
+        @include typos ($font-1, 1.4rem, $color-2);
+        text-align: flex-end;
+    }
+}
+
+
+.cuadrante-der-evento {
+    width: 50%;
+    ul li {
+        @include typos ($font-1, 1.1rem, $color-2);
+    }
+}
+
+li {
+    list-style: none;
+}
+
+.title-evento {
+    font-weight: 600;
+}
+
+.flex-end {
+    @include flex (row, flex-end);
+}

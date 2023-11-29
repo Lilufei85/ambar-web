@@ -1,0 +1,66 @@
+input {
+    outline: none;
+    border: 1px solid $color-4;
+    border-radius: 5px;
+    height: 25px;
+    width: 100%;
+    padding-left: 5px;  
+    @include typos ($font-1, 1.5rem, $color-2); 
+    &:focus {
+        @include focus-formulario;
+    }
+    
+}
+
+select {
+    @extend input;
+}
+
+
+.contendor-reservas { /***  F L E X B O X  ***/
+    @include flex (row, center);
+    margin-top: 30px;
+}
+
+.formulario-reservas { /***  F L E X B O X  ***/
+    width:70%; 
+    padding: 25px;
+    line-height: 40px;
+    text-align: left;
+    @include flex (column,space-evenly);
+    align-content: center;
+    label {
+        @include typos ($font-1, 1.5rem, $color-4); 
+    }
+}
+
+.flex-newsletter {
+    @include flex (row,center);
+    align-items: center;
+}
+
+
+.flex-button {
+    @include flex (row,flex-end);
+}
+.button-reserva {
+    @include typos ($font-1, 1.5rem, $color-1);
+    background-color: $color-4;
+    border: none;
+    border-radius: 7px;
+    text-decoration: none;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 400;
+    height: 38px;
+    align-self: flex-end;
+    margin-top: 10px;
+}
+
+
+.size-logo-reserva { 
+    width: 10%;
+}
+
+/*fin reglas especiales r3eservas*/
