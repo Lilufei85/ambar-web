@@ -1,20 +1,29 @@
 
-
-// agregar evento en el botón de reserva 
-// agregar inputs y eventos busqueda
-// agregar evento en botón de buscar reserva (por nombre y apellido o por nro de reserva)
-// agregar que se compare en la búsqueda sin espacios y con formato Oración- primer letra mayúscula y resto minúscula
+// mejoras pendientes:
+// agregar que se compare en la búsqueda sin espacios
 // Hacer que la búsqueda sea en una ventana modal
+
+
+//desplegar menú hamburguesa
+const menuIcon = document.getElementById('menuIcon');
+const navbarLinks = document.getElementById('navbarMenu');
+
+menuIcon.addEventListener('click', function () {
+    navbarLinks.classList.toggle('show');
+});
+
+
 
 const reservas = [];
 
 
 class Reserva {
-    constructor (nroReserva, cantDias, cantHuespedes, huespedes, email) {
+    constructor (nroReserva, nombre, apellido, cantDias, cantHuespedes, email) {
         this.nroReserva = nroReserva;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.cantDias = cantDias;
         this.cantHuespedes = cantHuespedes;
-        this.huespedes = huespedes;
         this.email = email;
         this.mensaje = function () {
             console.log (`Reserva nro ${nroReserva} confirmada. Por ${cantDias} días para ${cantHuespedes} personas.`)
@@ -22,18 +31,212 @@ class Reserva {
     }
 }
 
-/* function mayusIniciales (el) {
-    el = el.toLowerCase(); // acá paso todo a minúscula
-    el = el.split(' ').map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1)).join(' ');
-    // .split separa por espacios las palabras. 
-    //Con el método map() puedo trabajar sobre cada palabra por separado
-    //.join (); //acá vuelvo a juntar las palabras
-    return el;
+
+let nombre = "";
+let apellido = "";
+let iDias = "";
+let iHuespedes = "";
+let email = "";
+let nroValidaciones = 0;
+
+function formatearPalabra (element) {
+    element = element.toLowerCase(); 
+    return element.split(' ').map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1)).join(' ');     
 }
- */
+
+function obtenerDatosReserva() {
+    nombre = document.getElementById("inputNombre").value;
+    nombre = formatearPalabra (nombre);
+    apellido = document.getElementById("inputApellido").value;
+    apellido = formatearPalabra (apellido);
+    iDias = document.getElementById("inputDias").value;
+    iDias = parseInt (iDias);
+    iHuespedes = document.getElementById("inputCHuespedes").value;
+    iHuespedes = parseInt (iHuespedes);
+    email = document.getElementById("inputEmail").value;
+    email = email.toLowerCase();
+    console.log (`Se obtuvieron los siguientes datos: Nombre: ${nombre}, Apellido: ${apellido}`)
+}
 
 
 
+function generarNumeroReserva () {
+    return ( Math.ceil (Math.random () * 9999 + 1));
+}
+
+function guardarReserva () {
+    reservas.push (new Reserva(
+        generarNumeroReserva(),
+        nombre,
+        apellido,
+        iDias,  
+        iHuespedes,
+        email
+    ));
+}
+
+
+const buttonReserva = document.getElementById("buttonReserva");
+
+
+if (buttonReserva) {
+    buttonReserva.addEventListener("click", function(e) {
+        nroValidaciones = 0;
+        e.preventDefault();
+        obtenerDatosReserva ();
+        validarPalabra (nombre, "nombre");
+        console.log (nroValidaciones);
+        validarPalabra (apellido, "apellido");
+        console.log (nroValidaciones);
+        validarNumero (iDias, "cantidad de días");
+        console.log (nroValidaciones);
+        validarNumero (iHuespedes, "cantidad de huéspedes");
+        console.log (nroValidaciones);
+        validarEmail(email, "email");
+        console.log (nroValidaciones);
+        if (nroValidaciones >= 5) {
+            console.log ("reserva guardada correctamente");
+            guardarReserva ();
+        }
+        else {
+            console.log ("Corrige los campos mal completados para finalizar tu reserva");
+        }    
+    });
+}
+
+
+function validarNumero (el, titulo) {
+    if (el === ""){
+        console.log (`Debes ingresar un valor para ${titulo} `);
+    }
+    else if (!/^[0-9]\d*$/.test(el)) {
+        console.log (`Ingresa un número válido para ${titulo} `);
+    }
+    else if ( el < 1) {
+        console.log (`El valor para ${titulo} no puede ser menor a 1`);
+    }
+    else {  
+        console.log (` ${titulo} registrado`);
+        nroValidaciones ++;
+        return nroValidaciones;
+    }
+    return nroValidaciones; 
+}
+
+
+function validarPalabra (el, titulo) {
+    if (el === ""){
+        console.log (` Debes ingresar un valor para ${titulo} `);
+    }
+    else if (/^[0-9]+$/.test(el) === true) {
+        console.log (` Ingresa ${titulo} válido sin números ni caracteres especiales`);
+    }
+    else {
+        console.log (` ${titulo} registrado`);
+        nroValidaciones ++;
+        return nroValidaciones;
+    }
+    return nroValidaciones; 
+}                 
+
+
+function validarEmail(el, titulo) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let esEmailValido = regex.test(el);
+
+    if (esEmailValido) {
+        console.log(` ${titulo} registrado`);
+        nroValidaciones ++;
+        return nroValidaciones;
+    } else {
+        console.log(`Ingresa un ${titulo} válido`);
+    }
+    return nroValidaciones;
+}
+
+
+if (busquedaNombreApellido) {
+    busquedaNombreApellido.addEventListener("click", function(e) {
+        e.preventDefault();
+        busquedaXnombre ();
+    });
+}
+
+if (busquedaNroReserva) {
+    busquedaNroReserva.addEventListener("click", function(e) {
+        e.preventDefault();
+        busquedaXnro ();
+    });
+}
+
+
+
+function busquedaXnombre () {    
+    let nombreBusqueda = document.getElementById("inputBusquedaNombre").value;
+    let apellidoBusqueda = document.getElementById("inputBusquedaApellido").value;
+    nombreBusqueda = formatearPalabra (nombreBusqueda);
+    apellidoBusqueda = formatearPalabra (apellidoBusqueda);
+            
+    const BusquedaReserva = reservas.filter ( (el) =>(el.nombre === (nombreBusqueda) && el.apellido === (apellidoBusqueda))) ;
+    console.log (BusquedaReserva);
+            
+        if (BusquedaReserva.length === 0) {
+            let contenidoReservas = document.createElement ("div");
+            contenidoReservas.innerHTML = " "; 
+            contenidoReservas.innerHTML = `<p>No se encontró ninguna búsqueda bajo el nombre ${nombreBusqueda} ${apellidoBusqueda} </p>`;
+            document.body.appendChild (contenidoReservas);   
+        } else { 
+            BusquedaReserva.map((el) => {
+                let contenidoReservas = document.createElement ("div");
+                contenidoReservas.innerHTML = " "; 
+                contenidoReservas.innerHTML = `<img src="../assets/img/logo.png" alt="Logo Ambar Posada" class="size-logo-reserva">
+                                                    <p>Se encontraron las siguientes reservas bajo el nombre ${nombreBusqueda} ${apellidoBusqueda}:</p>
+                                                    <p>Reserva número ${el.nroReserva} </p>
+                                                    <p>Cantidad de dias: ${el.cantDias} </p>
+                                                    <p>Cantidad de huéspedes: ${el.cantHuespedes} </p>
+                                                    <p>Email de contacto: ${el.email} </p>
+                                                    `
+                contenidoReservas.classList.add("flex-main");
+                document.body.appendChild (contenidoReservas); 
+                });
+        }        
+}
+
+
+function busquedaXnro() {    
+    let busqueda = document.getElementById("inputBusquedaNro").value;
+    console.log (busqueda);
+
+    const BusquedaReserva = reservas.filter ( (el) =>(el.nroReserva === (parseInt (busqueda)) )) ;
+    console.log (BusquedaReserva);
+            
+        if (BusquedaReserva.length === 0) {
+            let contenidoReservas = document.createElement ("div");
+            contenidoReservas.innerHTML = " "; 
+            contenidoReservas.innerHTML = `<p>No se encontró ninguna búsqueda bajo el número de reserva ${busqueda} </p>`;
+            document.body.appendChild (contenidoReservas);   
+        } else { 
+            BusquedaReserva.map((el) => {
+                let contenidoReservas = document.createElement ("div");
+                contenidoReservas.innerHTML = " "; 
+                contenidoReservas.innerHTML = `<img src="../assets/img/logo.png" alt="Logo Ambar Posada" class="size-logo-reserva">
+                                                    <p>Se encontraron las siguientes reservas bajo el número de reserva ${el.nroReserva} :</p>
+                                                    <p>Nombre: ${el.nombre} ${el.apellido} </p>
+                                                    <p>Cantidad de dias: ${el.cantDias} </p>
+                                                    <p>Cantidad de huéspedes: ${el.cantHuespedes} </p>
+                                                    <p>Email de contacto: ${el.email} </p>
+                                                    `
+                contenidoReservas.classList.add("flex-main");
+                document.body.appendChild (contenidoReservas); 
+                });
+        }        
+}
+
+
+// CORREGIR HASTA ACÁ! 
+// LO QUE SIGUE ES DE LA PRE ENTREGA ANTERIOR. 
+// Es el modelo viejo (botones superiores con prompts y alerts) 
+// los tengo en los botones que se mueven arriba
 
 const simuladorBtn = document.getElementById("reservarViaTransfe");
 
@@ -68,7 +271,6 @@ if (simuladorBtn) {
 
         function validateCantHuesped () {
             checked = 0;
-
             iHuespedes = prompt ("Ingrese la cantidad de personas que desean hospedarse");
         
             while (checked === 0) {
@@ -108,8 +310,7 @@ if (simuladorBtn) {
                         nombre = prompt (`Ingrese el nombre y apellido del/la huésped número ${parseInt(i+1)}`);
                     }
                     else {
-                        //mayusIniciales (nombre);
-                        nombre = nombre.toLowerCase(); // acá paso todo a minúscula
+                        nombre = nombre.toLowerCase(); 
                         nombre = nombre.split(' ').map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1)).join(' ');
                         huespedes.push (nombre);
                         alert ("Nombre y apellido registrado");
@@ -201,21 +402,23 @@ if (simuladorBtn2) {
     });   
 }    
 
-    const menuIcon = document.getElementById("menuIcon");
-    //const navbarLinks = document.getElementById("navbarMenu");
-    const navbarLinks = document.getElementById("navbarMenu");
-
-    menuIcon.addEventListener("click", function () {
-    navbarLinks.classList.toggle("show");
-    });
 
 
- /*    const menuIcon = document.getElementById("menu-icon");
-    const navbarLinks = document.getElementsByClassName("navbarMenu");
 
-    menuIcon.addEventListener("click", function () {
-        for (let i = 0; i < navbarLinks.length; i++) {
-            navbarLinks[i].classList.toggle("show");
+
+    /* function obtenerDatos() {
+        const buttonReserva = document.getElementById("buttonReserva");
+    
+        if (buttonReserva) {
+            buttonReserva.addEventListener("click", function(e) {
+                e.preventDefault();
+                let nombre = document.getElementById("inputNombre").value;
+                let apellido = document.getElementById("inputApellido").value;
+                let iDias = document.getElementById("inputDias").value;
+                let iHuespedes = document.getElementById("inputCHuespedes").value;
+                let email = document.getElementById("inputEmail").value;
+                console.log (`Se obtuvieron los siguientes datos: Nombre: ${nombre}, Apellido: ${apellido}`)
+            });
         }
-    });
+    }
  */

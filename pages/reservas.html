@@ -70,54 +70,55 @@
                 <form action="" class="formulario-reservas">
                     <label for="nombre" class="label-nombre">
                         <span>Nombre: </span>
-                        <input type="text"name="nombre" class="input-nombre" autocomplete="Tu nombre" required/> 
+                        <input type="text"name="nombre" class="input-nombre" id="inputNombre" autocomplete="Tu nombre" required/> 
                     </label> 
                     <label for="apellido" class="label-apellido">
                         <span>Apellido: </span>
-                        <input type="text"name="apellido" class="input-apellido" autocomplete="Tu apellido" required/> 
+                        <input type="text"name="apellido" class="input-apellido" id="inputApellido" autocomplete="Tu apellido" required/> 
                     </label> 
                     <label for="idias" class="label-idias">
                         <span>Cantidad de días: </span>
-                        <input type="text"name="idias" class="input-idias" autocomplete="Ingresa aquí el número de días" required/> 
+                        <input type="text"name="idias" class="input-idias" id="inputDias" autocomplete="Ingresa aquí el número de días" required/> 
                     </label> 
-                    <label for="ihuesped" class="label-ihuesped">
+                    <label for="ihuesped" class="label-ihuesped" >
                         <span>Cantidad de huéspedes: </span>
-                        <input type="text"name="ihuesped" class="input-ihuesped" autocomplete="Ingresa aquí cantidad de huéspedes" required/> 
+                        <input type="text"name="ihuesped" class="input-ihuesped" id="inputCHuespedes" autocomplete="Ingresa aquí cantidad de huéspedes" required/> 
                     </label> 
                     <label for="email" class="label-email">E-mail: 
-                        <input type="email" id="email" name="email" class="input-email" autocomplete="email" required/>  
+                        <input type="email" id="inputEmail" name="email" class="input-email" autocomplete="email" required/>  
                     </label>   
                     <div class="flex-button">
-                        <button type="submit" class="button-reserva">Reservar</button>
+                        <button type="submit" id="buttonReserva" class="button-reserva">Reservar</button>
                     </div>
                 </form>
             </section>
         </div>
         <div>
             <section class="contendor-busqueda" >
-                <form action="" class="formulario-reservas" id="formBusquedaReserva">
+                <form action="" class="formulario-reservas" id="formBusquedaReservaXnombre">
                     <div>
                         <p>Buscar por nombre y apellido:</p>
                         <label for="nombre" class="label-nombre">
                             <span>Nombre: </span>
-                            <input type="text"name="nombre" class="input-nombre" autocomplete="Tu nombre" required/> 
+                            <input type="text"name="nombre" class="input-nombre" id="inputBusquedaNombre" autocomplete="Tu nombre" required/> 
                         </label> 
                         <label for="apellido" class="label-apellido">
                             <span>Apellido: </span>
-                            <input type="text"name="apellido" class="input-apellido" autocomplete="Tu apellido" required/> 
+                            <input type="text"name="apellido" class="input-apellido" id="inputBusquedaApellido" autocomplete="Tu apellido" required/> 
                         </label>
                         <div class="flex-button">
-                            <button type="submit" id="busquedaNombreApellido">Buscar</button>
+                            <button type="submit" class="button-dark" id="busquedaNombreApellido">Buscar</button>
                         </div> 
                     </div>
-                    <div>
+                </form>
+                <form action="" class="formulario-reservas" id="formBusquedaReservaXnro">
                         <p>Buscar por número de reserva:</p>
-                        <label for="idias" class="label-idias">
-                            <span>Cantidad de días: </span>
-                            <input type="text"name="idias" class="input-idias" autocomplete="Ingresa aquí el número de días" required/> 
+                        <label for="nroReserva" >
+                            <span>Número de reserva: </span>
+                            <input type="text"name="idias" id="inputBusquedaNro" autocomplete="Ingresa aquí el número de reserva" required/> 
                         </label>
                         <div class="flex-button">
-                            <button type="submit" id="busquedaNroReserva">Buscar</button>
+                            <button type="submit" class="button-dark" id="busquedaNroReserva">Buscar</button>
                         </div> 
                     </div>
                 </form>
