@@ -96,15 +96,15 @@ if (buttonReserva) {
         nroValidaciones = 0;
         e.preventDefault();
         obtenerDatosReserva ();
-        validarPalabra (nombre, "nombre", document.getElementById('divValidacionNombre'));
+        validarPalabra (nombre, "nombre", document.getElementById("divValidacionNombre"));
         console.log (nroValidaciones);
-        validarPalabra (apellido, "apellido", document.getElementById('divValidacionApellido')); 
+        validarPalabra (apellido, "apellido", document.getElementById("divValidacionApellido")); 
         console.log (nroValidaciones);
-        validarNumero (iDias, "cantidad de días");
+        validarNumero (iDias, "cantidad de días", document.getElementById("divValidacionIdias"));
+        console.log (nroValidaciones);  
+        validarNumero (iHuespedes, "cantidad de huéspedes", document.getElementById("divValidacionIhuesped"));
         console.log (nroValidaciones);
-        validarNumero (iHuespedes, "cantidad de huéspedes");
-        console.log (nroValidaciones);
-        validarEmail(email, "email");
+        validarEmail(email, "email", document.getElementById("divValidacionEmail"));
         console.log (nroValidaciones);
         if (nroValidaciones >= 5) {
             console.log ("reserva guardada correctamente");
@@ -117,15 +117,23 @@ if (buttonReserva) {
 }
 
 
-function validarNumero (el, titulo) {
+function validarNumero (el, titulo, ubicacion) {
+    let divValidacion = ubicacion;
+    divValidacion.innerText = " ";
     if (el === ""){
         console.log (`Debes ingresar un valor para ${titulo} `);
+        divValidacion.innerText =  ` Debes ingresar un valor para ${titulo} `;
+        divValidacion.classList.add("errorValidacion");
     }
     else if (!/^[0-9]\d*$/.test(el)) {
         console.log (`Ingresa un número válido para ${titulo} `);
+        divValidacion.innerText =  ` Ingresa un número válido para ${titulo} `;
+        divValidacion.classList.add("errorValidacion");
     }
     else if ( el < 1) {
         console.log (`El valor para ${titulo} no puede ser menor a 1`);
+        divValidacion.innerText =  ` El valor para ${titulo} no puede ser menor a 1 `;
+        divValidacion.classList.add("errorValidacion");
     }
     else {  
         console.log (` ${titulo} registrado`);
@@ -147,6 +155,7 @@ function validarPalabra (el, titulo, ubicacion) {
     else if (/^[0-9]+$/.test(el) === true) {
         console.log (` Ingresa ${titulo} válido sin números ni caracteres especiales`);
         divValidacion.innerText = ` Ingresa ${titulo} válido sin números ni caracteres especiales`;
+        divValidacion.classList.add("errorValidacion");
     }
     else {
         console.log (` ${titulo} registrado`);
@@ -157,7 +166,9 @@ function validarPalabra (el, titulo, ubicacion) {
 }                 
 
 
-function validarEmail(el, titulo) {
+function validarEmail(el, titulo, ubicacion) {
+    let divValidacion = ubicacion;
+    divValidacion.innerText = " ";
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let esEmailValido = regex.test(el);
 
@@ -167,6 +178,8 @@ function validarEmail(el, titulo) {
         return nroValidaciones;
     } else {
         console.log(`Ingresa un ${titulo} válido`);
+        divValidacion.innerText = ` Ingresa un ${titulo} válido`;
+        divValidacion.classList.add("errorValidacion");
     }
     return nroValidaciones;
 }
