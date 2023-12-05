@@ -71,10 +71,12 @@
                     <label for="nombre" class="label-nombre">
                         <span>Nombre: </span>
                         <input type="text"name="nombre" class="input-nombre" id="inputNombre" autocomplete="Tu nombre" required/> 
+                        <div id="divValidacionNombre"></div>
                     </label> 
                     <label for="apellido" class="label-apellido">
                         <span>Apellido: </span>
                         <input type="text"name="apellido" class="input-apellido" id="inputApellido" autocomplete="Tu apellido" required/> 
+                        <div id="divValidacionApellido"></div>
                     </label> 
                     <label for="idias" class="label-idias">
                         <span>Cantidad de días: </span>
@@ -123,6 +125,14 @@
                     </div>
                 </form>
             </section>
+        </div>
+        <div id="modal-1-BusquedaReserva" class="modal-1-BusquedaReserva">
+            <div>
+                <span class="close-modal-1" id="closeModal1">&times;</span>
+            </div>
+            <div id="modal-1-BusquedaReserva-content" class="modal-1-content">  
+                <p>Contenido del modal...</p>
+            </div>
         </div>
         <div>
             <a target="_blank" href="https://wa.me/5491150373278?text=Hola"> <img src="../assets/icons/whatsapp.png" alt="Whatsapp" class="whatsapp-button">

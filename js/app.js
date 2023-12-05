@@ -1,7 +1,9 @@
 
 // mejoras pendientes:
+// cómo poner un mensaje DOM en un lugar específico 
+//(por ejemplo los console log debajo de los inputs cuando hayy algun error de validacion)
 // agregar que se compare en la búsqueda sin espacios
-// Hacer que la búsqueda sea en una ventana modal
+// Hacer que la ventana modal me permita scroll cuando hay muchas reservas
 
 
 //desplegar menú hamburguesa
@@ -16,6 +18,9 @@ menuIcon.addEventListener('click', function () {
 
 const reservas = [];
 
+let reservasLocalStorage = JSON.stringify(localStorage.getItem("nuevasReservas"));//sólo para cumplir con el curso
+console.log (JSON.parse (reservasLocalStorage));//sólo para cumplir con el curso
+//localStorage.clear(); //si quisera borrar el LocalStorage. Pero si lo borro, no funcionan las dos líneas de arriba
 
 class Reserva {
     constructor (nroReserva, nombre, apellido, cantDias, cantHuespedes, email) {
@@ -38,6 +43,7 @@ let iDias = "";
 let iHuespedes = "";
 let email = "";
 let nroValidaciones = 0;
+
 
 function formatearPalabra (element) {
     element = element.toLowerCase(); 
@@ -64,6 +70,12 @@ function generarNumeroReserva () {
     return ( Math.ceil (Math.random () * 9999 + 1));
 }
 
+function guardarReservasLocalStorage (){ //sólo para cumplir con el curso
+    let nuevasReservas = JSON.stringify (reservas);
+    localStorage.setItem("nuevasReservas", nuevasReservas);
+}
+
+
 function guardarReserva () {
     reservas.push (new Reserva(
         generarNumeroReserva(),
@@ -73,20 +85,20 @@ function guardarReserva () {
         iHuespedes,
         email
     ));
+    guardarReservasLocalStorage (); //sólo para cumplir con el curso
 }
 
 
 const buttonReserva = document.getElementById("buttonReserva");
-
 
 if (buttonReserva) {
     buttonReserva.addEventListener("click", function(e) {
         nroValidaciones = 0;
         e.preventDefault();
         obtenerDatosReserva ();
-        validarPalabra (nombre, "nombre");
+        validarPalabra (nombre, "nombre", document.getElementById('divValidacionNombre'));
         console.log (nroValidaciones);
-        validarPalabra (apellido, "apellido");
+        validarPalabra (apellido, "apellido", document.getElementById('divValidacionApellido')); 
         console.log (nroValidaciones);
         validarNumero (iDias, "cantidad de días");
         console.log (nroValidaciones);
@@ -124,12 +136,17 @@ function validarNumero (el, titulo) {
 }
 
 
-function validarPalabra (el, titulo) {
+function validarPalabra (el, titulo, ubicacion) {
+    let divValidacion = ubicacion;
+    divValidacion.innerText = " ";
     if (el === ""){
         console.log (` Debes ingresar un valor para ${titulo} `);
+        divValidacion.innerText =  ` Debes ingresar un valor para ${titulo} `;
+        divValidacion.classList.add("errorValidacion");
     }
     else if (/^[0-9]+$/.test(el) === true) {
         console.log (` Ingresa ${titulo} válido sin números ni caracteres especiales`);
+        divValidacion.innerText = ` Ingresa ${titulo} válido sin números ni caracteres especiales`;
     }
     else {
         console.log (` ${titulo} registrado`);
@@ -158,6 +175,7 @@ function validarEmail(el, titulo) {
 if (busquedaNombreApellido) {
     busquedaNombreApellido.addEventListener("click", function(e) {
         e.preventDefault();
+        console.log ("Click busqueda por nombre y apellido activado");
         busquedaXnombre ();
     });
 }
@@ -170,6 +188,8 @@ if (busquedaNroReserva) {
 }
 
 
+const modal1 = document.getElementById("modal-1-BusquedaReserva");
+
 
 function busquedaXnombre () {    
     let nombreBusqueda = document.getElementById("inputBusquedaNombre").value;
@@ -177,30 +197,52 @@ function busquedaXnombre () {
     nombreBusqueda = formatearPalabra (nombreBusqueda);
     apellidoBusqueda = formatearPalabra (apellidoBusqueda);
             
+    console.log ("se entró a la función busquedaXnombre");
     const BusquedaReserva = reservas.filter ( (el) =>(el.nombre === (nombreBusqueda) && el.apellido === (apellidoBusqueda))) ;
     console.log (BusquedaReserva);
+    const modalContent = document.getElementById("modal-1-BusquedaReserva-content");
             
         if (BusquedaReserva.length === 0) {
             let contenidoReservas = document.createElement ("div");
-            contenidoReservas.innerHTML = " "; 
-            contenidoReservas.innerHTML = `<p>No se encontró ninguna búsqueda bajo el nombre ${nombreBusqueda} ${apellidoBusqueda} </p>`;
-            document.body.appendChild (contenidoReservas);   
+            modalContent.innerHTML = " "; 
+            modalContent.innerHTML = ` <img src="../assets/img/logo.png" alt="Logo Ambar Posada" class="size-logo-reserva"></img>
+                                    <p>No se encontró ninguna búsqueda bajo el nombre ${nombreBusqueda} ${apellidoBusqueda} </p>
+                                    `;
+            //document.body.appendChild (contenidoReservas);   
         } else { 
+            modalContent.innerHTML = " ";
+            modalContent.innerHTML = `<img src="../assets/img/logo.png" alt="Logo Ambar Posada" class="size-logo-reserva"></img>
+                                    <p>Se encontraron las siguientes reservas bajo el nombre ${nombreBusqueda} ${apellidoBusqueda}:</p>
+                                    `
+            
             BusquedaReserva.map((el) => {
-                let contenidoReservas = document.createElement ("div");
-                contenidoReservas.innerHTML = " "; 
-                contenidoReservas.innerHTML = `<img src="../assets/img/logo.png" alt="Logo Ambar Posada" class="size-logo-reserva">
-                                                    <p>Se encontraron las siguientes reservas bajo el nombre ${nombreBusqueda} ${apellidoBusqueda}:</p>
-                                                    <p>Reserva número ${el.nroReserva} </p>
-                                                    <p>Cantidad de dias: ${el.cantDias} </p>
-                                                    <p>Cantidad de huéspedes: ${el.cantHuespedes} </p>
-                                                    <p>Email de contacto: ${el.email} </p>
-                                                    `
-                contenidoReservas.classList.add("flex-main");
-                document.body.appendChild (contenidoReservas); 
+                let reservaInfo = document.createElement ("div");
+                reservaInfo.innerHTML = " "; 
+                reservaInfo.innerHTML = `
+                                        <br><br>
+                                        <p class="negrita">Reserva número ${el.nroReserva} </p>
+                                        <br>
+                                        <p>Cantidad de dias: ${el.cantDias} </p>
+                                        <p>Cantidad de huéspedes: ${el.cantHuespedes} </p>
+                                        <p>Email de contacto: ${el.email} </p>
+                                        <br>
+                                        `
+                reservaInfo.classList.add("flex-main");
+                modalContent.appendChild (reservaInfo); 
                 });
-        }        
+        }
+    //muestro modal
+    //const modal1 = document.getElementById("modal-1-BusquedaReserva");
+    modal1.style.display = 'block';        
 }
+
+
+//cerrar modal
+const closeModalBtn = document.getElementById("closeModal1");
+
+closeModal1.addEventListener('click', function () {
+    modal1.style.display = 'none';
+});
 
 
 function busquedaXnro() {    
@@ -231,6 +273,61 @@ function busquedaXnro() {
                 });
         }        
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // CORREGIR HASTA ACÁ! 

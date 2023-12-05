@@ -173,6 +173,33 @@ p {
   z-index: 1000;
   text-decoration: none; }
 
+.modal-1-BusquedaReserva {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.modal-1-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  overflow-y: auto; }
+
+.close-modal-1 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold; }
+  .close-modal-1:hover, .close-modal-1:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer; }
+
 body {
   height: 100vh; }
 
@@ -347,6 +374,14 @@ input, select {
 
 .size-logo-reserva {
   width: 10%; }
+
+.errorValidacion {
+  background-color: red;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  color: #FFFAF8;
+  border-radius: 5px;
+  padding-left: 5px; }
 
 /*fin reglas especiales r3eservas*/
 @media (min-width: 980px) {
