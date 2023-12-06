@@ -1,7 +1,6 @@
 
 // mejoras pendientes:
-// agregar que se compare en la búsqueda sin espacios
-// Hacer que la ventana modal me permita scroll cuando hay muchas reservas
+//dehabilitar boton de busqueda si no llenan los campos
 
 
 //desplegar menú hamburguesa
@@ -14,11 +13,18 @@ menuIcon.addEventListener('click', function () {
 
 
 
-const reservas = [];
+//LocalStorage
 
-let reservasLocalStorage = JSON.stringify(localStorage.getItem("nuevasReservas"));//sólo para cumplir con el curso
-console.log (JSON.parse (reservasLocalStorage));//sólo para cumplir con el curso
+let reservasLocalStorage = JSON.parse(localStorage.getItem("nuevasReservas")) || []; //lo parseo para poder utilizarlo
+//utilizo sugar syntax or para evitar errores por si no hay nada en local storage
+console.log (JSON.stringify(reservasLocalStorage)); //para poder probar busquedaxnro    
 //localStorage.clear(); //si quisera borrar el LocalStorage. Pero si lo borro, no funcionan las dos líneas de arriba
+
+
+
+//estructura array y objeto ppal
+
+const reservas = []; //no lo borro porque quiero usar este con la API más adelante
 
 class Reserva {
     constructor (nroReserva, nombre, apellido, cantDias, cantHuespedes, email) {
@@ -28,12 +34,8 @@ class Reserva {
         this.cantDias = cantDias;
         this.cantHuespedes = cantHuespedes;
         this.email = email;
-        this.mensaje = function () {
-            console.log (`Reserva nro ${nroReserva} confirmada. Por ${cantDias} días para ${cantHuespedes} personas.`)
-        }
     }
 }
-
 
 let nombre = "";
 let apellido = "";
@@ -43,10 +45,14 @@ let email = "";
 let nroValidaciones = 0;
 
 
+//funciones anidadas
+
 function formatearPalabra (element) {
+    element = element.replace(/\s+/g, '');
     element = element.toLowerCase(); 
     return element.split(' ').map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1)).join(' ');     
 }
+
 
 function obtenerDatosReserva() {
     nombre = document.getElementById("inputNombre").value;
@@ -59,18 +65,17 @@ function obtenerDatosReserva() {
     iHuespedes = parseInt (iHuespedes);
     email = document.getElementById("inputEmail").value;
     email = email.toLowerCase();
-    console.log (`Se obtuvieron los siguientes datos: Nombre: ${nombre}, Apellido: ${apellido}`)
 }
-
 
 
 function generarNumeroReserva () {
     return ( Math.ceil (Math.random () * 9999 + 1));
 }
 
+//aquí tmb hay local storage
 function guardarReservasLocalStorage (){ //sólo para cumplir con el curso
     let nuevasReservas = JSON.stringify (reservas);
-    localStorage.setItem("nuevasReservas", nuevasReservas);
+    localStorage.setItem("nuevasReservas", nuevasReservas); 
 }
 
 
@@ -84,42 +89,7 @@ function guardarReserva () {
         email
     ));
     guardarReservasLocalStorage (); //sólo para cumplir con el curso
-}
-
-
-const buttonReserva = document.getElementById("buttonReserva");
-
-if (buttonReserva) {
-    buttonReserva.addEventListener("click", function(e) {
-        nroValidaciones = 0;
-        e.preventDefault();
-        obtenerDatosReserva ();
-        validarPalabra (nombre, "nombre", document.getElementById("divValidacionNombre"));
-        console.log (nroValidaciones);
-        validarPalabra (apellido, "apellido", document.getElementById("divValidacionApellido")); 
-        console.log (nroValidaciones);
-        validarNumero (iDias, "cantidad de días", document.getElementById("divValidacionIdias"));
-        console.log (nroValidaciones);  
-        validarNumero (iHuespedes, "cantidad de huéspedes", document.getElementById("divValidacionIhuesped"));
-        console.log (nroValidaciones);
-        validarEmail(email, "email", document.getElementById("divValidacionEmail"));
-        console.log (nroValidaciones);
-        if (nroValidaciones >= 5) {
-            console.log ("reserva guardada correctamente");
-            guardarReserva ();
-            //mostrar modal!
-            const modalContent = document.getElementById("modal-1-BusquedaReserva-content");
-            modalContent.innerHTML = " "; 
-            modalContent.innerHTML = ` <img src="../assets/img/logo.png" alt="Logo Ambar Posada" class="size-logo-reserva"></img>
-                                    <p> Se ha guardado tu solicitud de reserva correctamente. 
-                                    <br> A la brevedad nos comunicaremos con vos para indicarte los medios de pago </p>
-                                    `;
-            modal1.style.display = 'block'; 
-        }
-        else {
-            console.log ("Corrige los campos mal completados para finalizar tu reserva");
-        }    
-    });
+    //reservasLocalStorage = JSON.parse(localStorage.getItem("nuevasReservas")) || []; //actualizo el localstorage
 }
 
 
@@ -127,22 +97,18 @@ function validarNumero (el, titulo, ubicacion) {
     let divValidacion = ubicacion;
     divValidacion.innerText = " ";
     if (el === ""){
-        console.log (`Debes ingresar un valor para ${titulo} `);
-        divValidacion.innerText =  ` Debes ingresar un valor para ${titulo} `;
+        divValidacion.innerText =  ` Debes ingresar un número `;
         divValidacion.classList.add("errorValidacion");
     }
     else if (!/^[0-9]\d*$/.test(el)) {
-        console.log (`Ingresa un número válido para ${titulo} `);
-        divValidacion.innerText =  ` Ingresa un número válido para ${titulo} `;
+        divValidacion.innerText =  ` Ingresa un número válido`;
         divValidacion.classList.add("errorValidacion");
     }
     else if ( el < 1) {
-        console.log (`El valor para ${titulo} no puede ser menor a 1`);
-        divValidacion.innerText =  ` El valor para ${titulo} no puede ser menor a 1 `;
+        divValidacion.innerText =  ` Este valor no puede ser menor a 1 `;
         divValidacion.classList.add("errorValidacion");
     }
     else {  
-        console.log (` ${titulo} registrado`);
         nroValidaciones ++;
         return nroValidaciones;
     }
@@ -154,17 +120,14 @@ function validarPalabra (el, titulo, ubicacion) {
     let divValidacion = ubicacion;
     divValidacion.innerText = " ";
     if (el === ""){
-        console.log (` Debes ingresar un valor para ${titulo} `);
-        divValidacion.innerText =  ` Debes ingresar un valor para ${titulo} `;
+        divValidacion.innerText =  ` Debes ingresar tu ${titulo} `;
         divValidacion.classList.add("errorValidacion");
     }
     else if (/^[0-9]+$/.test(el) === true) {
-        console.log (` Ingresa ${titulo} válido sin números ni caracteres especiales`);
         divValidacion.innerText = ` Ingresa ${titulo} válido sin números ni caracteres especiales`;
         divValidacion.classList.add("errorValidacion");
     }
     else {
-        console.log (` ${titulo} registrado`);
         nroValidaciones ++;
         return nroValidaciones;
     }
@@ -179,25 +142,67 @@ function validarEmail(el, titulo, ubicacion) {
     let esEmailValido = regex.test(el);
 
     if (esEmailValido) {
-        console.log(` ${titulo} registrado`);
         nroValidaciones ++;
         return nroValidaciones;
     } else {
-        console.log(`Ingresa un ${titulo} válido`);
         divValidacion.innerText = ` Ingresa un ${titulo} válido`;
         divValidacion.classList.add("errorValidacion");
     }
     return nroValidaciones;
 }
 
+function borrarValoresInputs () {
+    inputNombre.value = " ";
+    inputApellido.value = " ";
+    inputDias.value = " ";
+    inputCHuespedes.value = " ";
+    inputEmail.value = " ";
+}
+
+
+//acciones botón reserva
+
+const buttonReserva = document.getElementById("buttonReserva");
+
+if (buttonReserva) {
+    buttonReserva.addEventListener("click", function(e) {
+        nroValidaciones = 0;
+        e.preventDefault();
+        obtenerDatosReserva ();
+        validarPalabra (nombre, "nombre", document.getElementById("divValidacionNombre"));
+        validarPalabra (apellido, "apellido", document.getElementById("divValidacionApellido")); 
+        validarNumero (iDias, "cantidad de días", document.getElementById("divValidacionIdias"));
+        validarNumero (iHuespedes, "cantidad de huéspedes", document.getElementById("divValidacionIhuesped"));
+        validarEmail(email, "email", document.getElementById("divValidacionEmail"));
+        if (nroValidaciones >= 5) {
+            guardarReserva ();
+            //mostrar modal!
+            const modalContent = document.getElementById("modal-1-BusquedaReserva-content");
+            modalContent.innerHTML = " "; 
+            modalContent.innerHTML = ` <img src="../assets/img/logo.png" alt="Logo Ambar Posada" class="size-logo-reserva"></img>
+                                    <p> Se ha guardado tu solicitud de reserva correctamente. 
+                                    <br> A la brevedad nos comunicaremos con vos para indicarte los medios de pago </p>
+                                    `;
+            modal1.style.display = 'block'; 
+            borrarValoresInputs ();
+            setTimeout(function () {
+                modal1.style.display = "none"; // O modal.style.visibility = "hidden";
+            }, 2000);
+        }   
+    });
+}
+
+
+
+//fx y acciones botones búsquedas
 
 if (busquedaNombreApellido) {
     busquedaNombreApellido.addEventListener("click", function(e) {
         e.preventDefault();
-        console.log ("Click busqueda por nombre y apellido activado");
         busquedaXnombre ();
     });
 }
+
 
 if (busquedaNroReserva) {
     busquedaNroReserva.addEventListener("click", function(e) {
@@ -205,7 +210,6 @@ if (busquedaNroReserva) {
         busquedaXnro ();
     });
 }
-
 
 const modal1 = document.getElementById("modal-1-Reservas");
 
@@ -216,13 +220,10 @@ function busquedaXnombre () {
     nombreBusqueda = formatearPalabra (nombreBusqueda);
     apellidoBusqueda = formatearPalabra (apellidoBusqueda);
             
-    console.log ("se entró a la función busquedaXnombre");
-    const BusquedaReserva = reservas.filter ( (el) =>(el.nombre === (nombreBusqueda) && el.apellido === (apellidoBusqueda))) ;
-    console.log (BusquedaReserva);
+    const BusquedaReserva = reservasLocalStorage.filter ( (el) =>(el.nombre === (nombreBusqueda) && el.apellido === (apellidoBusqueda))) ;
     const modalContent = document.getElementById("modal-1-BusquedaReserva-content");
             
         if (BusquedaReserva.length === 0) {
-            //let contenidoReservas = document.createElement ("div");
             modalContent.innerHTML = " "; 
             modalContent.innerHTML = ` <img src="../assets/img/logo.png" alt="Logo Ambar Posada" class="size-logo-reserva"></img>
                                     <p>No se encontró ninguna búsqueda bajo el nombre ${nombreBusqueda} ${apellidoBusqueda} </p>
@@ -254,25 +255,14 @@ function busquedaXnombre () {
 }
 
 
-//cerrar modal
-const closeModalBtn = document.getElementById("closeModal1");
-
-closeModal1.addEventListener('click', function () {
-    modal1.style.display = 'none';
-});
-
-
 function busquedaXnro() {    
     let busqueda = document.getElementById("inputBusquedaNro").value;
-    console.log (busqueda);
 
-    const BusquedaReserva = reservas.filter ( (el) =>(el.nroReserva === (parseInt (busqueda)) )) ;
-    console.log (BusquedaReserva);
+    const BusquedaReserva = reservasLocalStorage.filter ( (el) =>(el.nroReserva === (parseInt (busqueda)) )) ;
     const modalContent = document.getElementById("modal-1-BusquedaReserva-content");
 
             
         if (BusquedaReserva.length === 0) {
-            //let contenidoReservas = document.createElement ("div");
             modalContent.innerHTML = " "; 
             modalContent.innerHTML = `<p>No se encontró ninguna búsqueda bajo el número de reserva ${busqueda} </p>`;
         } else { 
@@ -295,3 +285,11 @@ function busquedaXnro() {
         }
     modal1.style.display = 'block';             
 }
+
+
+//cerrar modal
+const closeModalBtn = document.getElementById("closeModal1");
+
+closeModal1.addEventListener('click', function () {
+    modal1.style.display = 'none';
+});

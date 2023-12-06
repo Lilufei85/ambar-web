@@ -175,20 +175,20 @@ p {
 
 .modal-1-Reservas {
   display: none;
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.5); }
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  overflow-y: auto; }
 
 .modal-1-content {
   background-color: #fefefe;
   margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
-  overflow-y: auto; }
+  width: 80%; }
 
 .close-modal-1 {
   color: #aaa;
@@ -201,7 +201,7 @@ p {
     cursor: pointer; }
 
 body {
-  height: 100vh; }
+  min-height: 100vh; }
 
 .logo-index {
   width: 45%;
@@ -209,11 +209,6 @@ body {
   padding: 10px;
   margin: 5vh; }
 
-/*.centrado-vertical{
-    @include flex (row, center);  
-    BORRAR LOS CENTRADOS VERTICALES Q POR AHORA NO SE NECESITA  
-}
-*/
 .flex-main {
   display: flex;
   flex-direction: column;
@@ -228,12 +223,13 @@ body {
   margin-left: 40px;
   margin-right: 40px; }
 
-.width-55 {
-  width: 55%; }
+/* .width-55 {
+    width: 55%;   
+}
 
 .width-70 {
-  width: 70%; }
-
+    width: 70%;
+} */
 .contenedor-ig {
   display: flex;
   flex-direction: row;
@@ -324,14 +320,12 @@ input, select {
     border: 1px solid #C7B6BA; }
 
 .contendor-reservas {
-  /***  F L E X B O X  ***/
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 30px; }
 
 .formulario-reservas {
-  /***  F L E X B O X  ***/
   width: 70%;
   padding: 25px;
   line-height: 40px;
@@ -381,9 +375,10 @@ input, select {
   font-size: 1.2rem;
   color: #FFFAF8;
   border-radius: 5px;
-  padding-left: 5px; }
+  padding-left: 5px;
+  line-height: 1.8; }
 
-/*fin reglas especiales r3eservas*/
+/*fin reglas especiales reservas*/
 @media (min-width: 980px) {
   .menu {
     display: flex; }
