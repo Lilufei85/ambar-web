@@ -1,5 +1,6 @@
 
 // mejoras pendientes:
+// arreglar position de busqueda por nro de reserva
 //dehabilitar boton de busqueda si no llenan los campos
 
 
@@ -15,9 +16,9 @@ menuIcon.addEventListener('click', function () {
 
 //LocalStorage
 
-let reservasLocalStorage = JSON.parse(localStorage.getItem("nuevasReservas")) || []; //lo parseo para poder utilizarlo
+let reservasLocalStorage = JSON.parse(localStorage.getItem("nuevasReservas")) || []; 
+//lo parseo para poder utilizarlo
 //utilizo sugar syntax or para evitar errores por si no hay nada en local storage
-console.log (JSON.stringify(reservasLocalStorage)); //para poder probar busquedaxnro    
 //localStorage.clear(); //si quisera borrar el LocalStorage. Pero si lo borro, no funcionan las dos líneas de arriba
 
 
@@ -43,6 +44,30 @@ let iDias = "";
 let iHuespedes = "";
 let email = "";
 let nroValidaciones = 0;
+
+
+//mostrar y ocultar formularios reserva y busqueda
+
+const mostrarFormReserva = document.getElementById("mostrarFormReserva");
+const formReserva = document.getElementById("formReserva");
+
+mostrarFormReserva.addEventListener('click', function () {
+    formBusqueda.classList.add("hide"); // oculto el form que no uso
+    formReserva.classList.toggle("hide");
+    formReserva.classList.toggle("show");
+});
+
+
+
+const mostrarFormBusqueda = document.getElementById("mostrarFormBusqueda");
+const formBusqueda = document.getElementById("formBusqueda");
+
+mostrarFormBusqueda.addEventListener('click', function () {
+    formReserva.classList.add("hide") // oculto el form que no uso
+    formBusqueda.classList.toggle("hide");
+    formBusqueda.classList.toggle("show");
+}); 
+
 
 
 //funciones anidadas
@@ -73,25 +98,29 @@ function generarNumeroReserva () {
 }
 
 //aquí tmb hay local storage
-function guardarReservasLocalStorage (){ //sólo para cumplir con el curso
-    let nuevasReservas = JSON.stringify (reservas);
-    localStorage.setItem("nuevasReservas", nuevasReservas); 
+function guardarReservasLocalStorage() {
+    const ultimaReserva = reservas.length > 0 ? reservas[reservas.length - 1] : null;
+
+    if (ultimaReserva) {
+        reservasLocalStorage.push(ultimaReserva); 
+        localStorage.setItem("nuevasReservas", JSON.stringify(reservasLocalStorage));
+    }
 }
 
 
-function guardarReserva () {
-    reservas.push (new Reserva(
+function guardarReserva() {
+    const nuevaReserva = new Reserva(
         generarNumeroReserva(),
         nombre,
         apellido,
-        iDias,  
+        iDias,
         iHuespedes,
         email
-    ));
-    guardarReservasLocalStorage (); //sólo para cumplir con el curso
-    //reservasLocalStorage = JSON.parse(localStorage.getItem("nuevasReservas")) || []; //actualizo el localstorage
-}
+    );
 
+    reservas.push(nuevaReserva);
+    guardarReservasLocalStorage();
+}
 
 function validarNumero (el, titulo, ubicacion) {
     let divValidacion = ubicacion;
@@ -212,17 +241,21 @@ if (busquedaNroReserva) {
 }
 
 const modal1 = document.getElementById("modal-1-Reservas");
+const modal2 = document.getElementById ("modal-2-Busqueda");
 
 
-function busquedaXnombre () {    
+function busquedaXnombre () {   
     let nombreBusqueda = document.getElementById("inputBusquedaNombre").value;
     let apellidoBusqueda = document.getElementById("inputBusquedaApellido").value;
     nombreBusqueda = formatearPalabra (nombreBusqueda);
     apellidoBusqueda = formatearPalabra (apellidoBusqueda);
-            
+    
+
+    console.log('ReservasLocaStorage:', reservasLocalStorage);
+
     const BusquedaReserva = reservasLocalStorage.filter ( (el) =>(el.nombre === (nombreBusqueda) && el.apellido === (apellidoBusqueda))) ;
-    const modalContent = document.getElementById("modal-1-BusquedaReserva-content");
-            
+    const modalContent = document.getElementById("modal-2-BusquedaReserva-content");
+    console.log (BusquedaReserva);        
         if (BusquedaReserva.length === 0) {
             modalContent.innerHTML = " "; 
             modalContent.innerHTML = ` <img src="../assets/img/logo.png" alt="Logo Ambar Posada" class="size-logo-reserva"></img>
@@ -251,7 +284,7 @@ function busquedaXnombre () {
                 });
         }
     //muestro modal
-    modal1.style.display = 'block';        
+    modal2.style.display = 'block';        
 }
 
 
@@ -259,7 +292,7 @@ function busquedaXnro() {
     let busqueda = document.getElementById("inputBusquedaNro").value;
 
     const BusquedaReserva = reservasLocalStorage.filter ( (el) =>(el.nroReserva === (parseInt (busqueda)) )) ;
-    const modalContent = document.getElementById("modal-1-BusquedaReserva-content");
+    const modalContent = document.getElementById("modal-2-BusquedaReserva-content");
 
             
         if (BusquedaReserva.length === 0) {
@@ -283,13 +316,21 @@ function busquedaXnro() {
                 modalContent.appendChild (reservaInfo); 
                 });
         }
-    modal1.style.display = 'block';             
+    modal2.style.display = 'block';             
 }
 
 
-//cerrar modal
-const closeModalBtn = document.getElementById("closeModal1");
+//cerrar modal 
 
-closeModal1.addEventListener('click', function () {
-    modal1.style.display = 'none';
-});
+function cerrarModal(idBtn, modalNro) {
+    const closeModalBtn = document.getElementById(idBtn);
+
+    closeModalBtn.addEventListener('click', function () {
+        modalNro.style.display = "none";
+    });
+}
+
+cerrarModal ("closeModal1", modal1);
+cerrarModal ("closeModal2", modal2);
+
+

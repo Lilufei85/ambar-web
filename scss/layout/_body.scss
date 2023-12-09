@@ -78,3 +78,11 @@ li {
 .flex-end {
     @include flex (row, flex-end);
 }
+
+.hide {
+    display: none;
+}
+
+.pointer {
+    cursor: pointer;
+}

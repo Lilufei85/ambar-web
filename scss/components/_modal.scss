@@ -1,15 +1,25 @@
+//.modal-1-Reservas
+
 .modal-1-Reservas {
     display: none;
-    top: 0; 
-    left: 0; 
-    width: 100%;
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute; 
     overflow-y: auto; 
 }
 
-.modal-1-content {
+.modal-2-Busqueda {
+    @extend .modal-1-Reservas;
+    top: 0; 
+    left: 0; 
+    transform: none;   
+}
+
+.modal-content {
     background-color: #fefefe;
     margin: 5% auto;
     padding: 20px;
@@ -17,7 +27,7 @@
     width: 80%;
 }
 
-.close-modal-1 {
+.close-modal {
     color: #aaa;
     float: right;
     font-size: 28px;

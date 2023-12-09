@@ -1,3 +1,5 @@
+//ESTILOS NAVBAR
+
 .navbar {
     padding-top: 15px;
     @include flex (row, space-between);
@@ -5,8 +7,6 @@
 
 .container-BotonYLinks {
     @include flex (column, flex-end); 
-    /* column-gap: 15px;  
-    align-items: center; */
 }
 
 .container-MenuYBoton {
@@ -26,7 +26,6 @@
     }
 
 .menu {
-    //overflow: hidden;
     display: none;
     a {
         @include flex (column, flex-end);
@@ -41,3 +40,4 @@
     display: block;
 }
 
+//FIN ESTILOS NAVBAR

@@ -1,6 +1,7 @@
+//ESTILOS TABLET
+
 @media (min-width: 980px) {
     .menu {
-        //overflow: hidden;
         display: flex;
         a {
             @include flex (row, flex-end);
@@ -27,3 +28,5 @@
         order: 1;
     }
 }
+
+//FIN ESTILOS TABLET
