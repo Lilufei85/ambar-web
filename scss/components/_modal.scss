@@ -10,7 +10,8 @@
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute; 
     overflow-y: auto; 
-}
+}// SI BIEN NO LO ESTOY USANDO AHORA MISMO, MI INTENCIÓN ES BORRAR TOASTIFY
+//Y ADEMÁS EL MODAL-2 ES UN EXTEND DE ESTE. POR ESO NO LO COMENTÉ
 
 .modal-2-Busqueda {
     @extend .modal-1-Reservas;
@@ -39,3 +40,7 @@
     }
 }
 
+//NO FUNCIONAAA. NO PUDE CAMBIAR EL COLOR DEL ÍCONO DE CLOSE DE TOASTIFY :(
+.toastify-close {
+    color: black !important; /* Cambia el color del icono de cerrar */
+}

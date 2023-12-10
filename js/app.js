@@ -205,7 +205,7 @@ if (buttonReserva) {
         validarEmail(email, "email", document.getElementById("divValidacionEmail"));
         if (nroValidaciones >= 5) {
             guardarReserva ();
-            //mostrar modal!
+            /*//mostrar modal!
             const modalContent = document.getElementById("modal-1-BusquedaReserva-content");
             modalContent.innerHTML = " "; 
             modalContent.innerHTML = ` <img src="../assets/img/logo.png" alt="Logo Ambar Posada" class="size-logo-reserva"></img>
@@ -214,9 +214,30 @@ if (buttonReserva) {
                                     `;
             modal1.style.display = 'block'; 
             borrarValoresInputs ();
-            setTimeout(function () {
+            setTimeout( () => {
                 modal1.style.display = "none"; // O modal.style.visibility = "hidden";
             }, 2000);
+            clearTimeout (); */ 
+            //dejo esto porque volveré a usar modal y sacar el toastify
+            Toastify({
+                close: true,
+                text: "\n \n Solicitud de reserva exitosa. \n A la brevedad nos comunicaremos con vos para indicarte los medios de pago ",
+                gravity: "top",
+                duration: 2000,
+                avatar: "../assets/img/logo.png",
+                style: {
+                    color: "#C7B6BA", 
+                    fontFamily: "Montserrat, sans-serif", 
+                    fontSize: "1.4rem",
+                    background: "white",
+                    height: "25vh",
+                    width: "80%",
+                    display: "flex",  
+                    flexDirection: "column", 
+                    alignItems: "center", 
+                    justifyContent: "center",
+                }  
+            }).showToast();
         }   
     });
 }
