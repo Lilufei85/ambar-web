@@ -1,0 +1,42 @@
+[
+    {
+        "nroHabitacion": 1,
+        "disponible": false,
+        "capacidad": 2
+    },
+    {
+        "nroHabitacion": 2,
+        "disponible": false,
+        "capacidad": 2
+    },
+    {
+        "nroHabitacion": 3,
+        "disponible": false,
+        "capacidad": 2
+    },
+    {
+        "nroHabitacion": 4,
+        "disponible": true,
+        "capacidad": 2
+    },
+    {
+        "nroHabitacion": 5,
+        "disponible": true,
+        "capacidad": 2
+    },
+    {
+        "nroHabitacion": 6,
+        "disponible": false,
+        "capacidad": 2
+    },
+    {
+        "nroHabitacion": 7,
+        "disponible": true,
+        "capacidad": 2
+    },
+    {
+        "nroHabitacion": 8,
+        "disponible": false,
+        "capacidad": 2
+    }
+]

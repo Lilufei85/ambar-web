@@ -1,4 +1,3 @@
-
 // mejoras pendientes:
 // arreglar position de busqueda por nro de reserva
 //dehabilitar boton de busqueda si no llenan los campos
@@ -16,11 +15,10 @@ menuIcon.addEventListener('click', function () {
 
 //LocalStorage
 
-let reservasLocalStorage = JSON.parse(localStorage.getItem("nuevasReservas")) || []; 
+let reservasLocalStorage = JSON.parse(localStorage.getItem("nuevasReservas")) || []; //operador OR para valores falsy
 //lo parseo para poder utilizarlo
 //utilizo sugar syntax or para evitar errores por si no hay nada en local storage
 //localStorage.clear(); //si quisera borrar el LocalStorage. Pero si lo borro, no funcionan las dos líneas de arriba
-
 
 
 //estructura array y objeto ppal
@@ -57,8 +55,6 @@ mostrarFormReserva.addEventListener('click', function () {
     formReserva.classList.toggle("show");
 });
 
-
-
 const mostrarFormBusqueda = document.getElementById("mostrarFormBusqueda");
 const formBusqueda = document.getElementById("formBusqueda");
 
@@ -69,7 +65,6 @@ mostrarFormBusqueda.addEventListener('click', function () {
 }); 
 
 
-
 //funciones anidadas
 
 function formatearPalabra (element) {
@@ -77,7 +72,6 @@ function formatearPalabra (element) {
     element = element.toLowerCase(); 
     return element.split(' ').map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1)).join(' ');     
 }
-
 
 function obtenerDatosReserva() {
     nombre = document.getElementById("inputNombre").value;
@@ -92,21 +86,19 @@ function obtenerDatosReserva() {
     email = email.toLowerCase();
 }
 
-
 function generarNumeroReserva () {
     return ( Math.ceil (Math.random () * 9999 + 1));
 }
 
 //aquí tmb hay local storage
 function guardarReservasLocalStorage() {
-    const ultimaReserva = reservas.length > 0 ? reservas[reservas.length - 1] : null;
+    const ultimaReserva = reservas.length > 0 ? reservas[reservas.length - 1] : null; //operador ternario
 
     if (ultimaReserva) {
         reservasLocalStorage.push(ultimaReserva); 
         localStorage.setItem("nuevasReservas", JSON.stringify(reservasLocalStorage));
     }
 }
-
 
 function guardarReserva() {
     const nuevaReserva = new Reserva(
@@ -144,7 +136,6 @@ function validarNumero (el, titulo, ubicacion) {
     return nroValidaciones; 
 }
 
-
 function validarPalabra (el, titulo, ubicacion) {
     let divValidacion = ubicacion;
     divValidacion.innerText = " ";
@@ -162,7 +153,6 @@ function validarPalabra (el, titulo, ubicacion) {
     }
     return nroValidaciones; 
 }                 
-
 
 function validarEmail(el, titulo, ubicacion) {
     let divValidacion = ubicacion;
@@ -243,7 +233,6 @@ if (buttonReserva) {
 }
 
 
-
 //fx y acciones botones búsquedas
 
 if (busquedaNombreApellido) {
@@ -252,7 +241,6 @@ if (busquedaNombreApellido) {
         busquedaXnombre ();
     });
 }
-
 
 if (busquedaNroReserva) {
     busquedaNroReserva.addEventListener("click", function(e) {
@@ -304,10 +292,8 @@ function busquedaXnombre () {
                 modalContent.appendChild (reservaInfo); 
                 });
         }
-    //muestro modal
     modal2.style.display = 'block';        
 }
-
 
 function busquedaXnro() {    
     let busqueda = document.getElementById("inputBusquedaNro").value;
