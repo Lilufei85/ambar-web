@@ -4,7 +4,7 @@ let cantHabitaciones = 0;
 function obtenerInfoHabitaciones() {
     return new Promise((resolve, reject) => {
         let resultado="";
-        fetch("../JSON/habitaciones.json")
+        fetch("./JSON/habitaciones.json")
             .then(response => {
                 if (!response.ok) { throw new Error("Error al cargar la API de habitaciones"); }
                 return response.json();
