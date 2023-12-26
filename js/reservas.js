@@ -1,5 +1,4 @@
 // mejoras pendientes:
-// arreglar position de busqueda por nro de reserva
 //dehabilitar boton de busqueda si no llenan los campos
 
 

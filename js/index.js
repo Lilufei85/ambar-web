@@ -47,3 +47,17 @@ async function consultarHabitacionesDisponibles () {
 
 
 consultarHabitacionesDisponibles ();
+
+
+
+
+const buttonResena = document.getElementById("reviewGoogle");
+
+if (buttonResena) {
+    buttonResena.addEventListener("click", function(e) {
+        window.open("https://www.google.com/maps/place/Ambar+Posada/@-34.20478,-54.7653693,17z/data=!3m1!4b1!4m9!3m8!1s0x950b27936b33855f:0xd0a2007aff75538d!5m2!4m1!1i2!8m2!3d-34.20478!4d-54.7653693!16s%2Fg%2F11snyyr_1c?entry=ttu", "_blank");
+    });
+}
+
+
+
