@@ -1,6 +1,3 @@
-// mejoras pendientes:
-//dehabilitar boton de busqueda si no llenan los campos
-
 
 //desplegar menú hamburguesa
 const menuIcon = document.getElementById('menuIcon');
@@ -22,7 +19,7 @@ let reservasLocalStorage = JSON.parse(localStorage.getItem("nuevasReservas")) ||
 
 //estructura array y objeto ppal
 
-const reservas = []; //no lo borro porque quiero usar este con la API más adelante
+//const reservas = []; //no lo borro porque quiero usar este con la API más adelante
 
 class Reserva {
     constructor (nroReserva, nombre, apellido, cantDias, cantHuespedes, email) {
@@ -35,12 +32,12 @@ class Reserva {
     }
 }
 
-let nombre = "";
-let apellido = "";
-let iDias = "";
-let iHuespedes = "";
-let email = "";
-let nroValidaciones = 0;
+let nombre = "",
+    apellido = "",
+    iDias = "",
+    iHuespedes = "",
+    email = "",
+    nroValidaciones = 0;
 
 
 //mostrar y ocultar formularios reserva y busqueda
@@ -69,6 +66,7 @@ mostrarFormBusqueda.addEventListener('click', function () {
 function formatearPalabra (element) {
     element = element.replace(/\s+/g, '');
     element = element.toLowerCase(); 
+    element = element.trim();
     return element.split(' ').map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1)).join(' ');     
 }
 
