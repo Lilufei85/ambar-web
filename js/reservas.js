@@ -19,7 +19,7 @@ let reservasLocalStorage = JSON.parse(localStorage.getItem("nuevasReservas")) ||
 
 //estructura array y objeto ppal
 
-//const reservas = []; //no lo borro porque quiero usar este con la API más adelante
+const reservas = []; //no lo borro porque quiero usar este con la API más adelante
 
 class Reserva {
     constructor (nroReserva, nombre, apellido, cantDias, cantHuespedes, email) {
@@ -210,7 +210,7 @@ if (buttonReserva) {
                 close: true,
                 text: "\n \n Solicitud de reserva exitosa. \n A la brevedad nos comunicaremos con vos para indicarte los medios de pago ",
                 gravity: "top",
-                duration: 2000,
+                duration: 3500,
                 avatar: "../assets/img/logo.png",
                 style: {
                     color: "#C7B6BA", 
