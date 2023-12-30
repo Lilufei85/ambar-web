@@ -63,6 +63,14 @@ mostrarFormBusqueda.addEventListener('click', function () {
 
 //funciones anidadas
 
+function borrarInpus () {
+    document.getElementById('inputNombre').value = "";
+    document.getElementById("inputApellido").value = "";
+    document.getElementById("inputDias").value = "";
+    document.getElementById("inputCHuespedes").value = ""; 
+    document.getElementById("inputEmail").value = "";
+}
+
 function formatearPalabra (element) {
     element = element.replace(/\s+/g, '');
     element = element.toLowerCase(); 
@@ -108,6 +116,7 @@ function guardarReserva() {
     );
 
     reservas.push(nuevaReserva);
+    borrarInpus ();
     guardarReservasLocalStorage();
 }
 
