@@ -21,13 +21,14 @@ body {
     margin-right:40px ;
 }
 
-/* .width-55 {
+
+.width-55 {
     width: 55%;   
 }
 
 .width-70 {
     width: 70%;
-} */
+} 
 
 .contenedor-ig {
     @include flex (row, center);
@@ -85,4 +86,9 @@ li {
 
 .pointer {
     cursor: pointer;
+}
+
+.experienci-ambar {
+    @include flex (row, center);
+    flex-wrap: nowrap;
 }

@@ -15,9 +15,9 @@
     align-items: center;
 }
 
-.logo-navbar {
+/*.logo-navbar {
     width: 50px;
-}
+}*/
 
 .toggle img {
     width: 40px; 
@@ -30,7 +30,7 @@
     a {
         @include flex (column, flex-end);
         align-items: flex-end;
-        padding: 14px 16px;
+        padding: 14px 10px;
         text-decoration: none;
         @include typos ($font-1, 1.4rem, $color-2);
     }

@@ -6,6 +6,7 @@ footer {
     padding-top: 25px;
     margin-top: 30px;
     padding-bottom: 20px;
+    position: relative;
     p {
         @include typos ($font-1, 1.5rem, $color-1);
     }ul { /***  F L E X B O X  ***/
@@ -22,4 +23,35 @@ footer {
     }
 }
 
+.container-footer {
+    @include grid (1fr,repeat(8,50px));
+
+}
+
+.footer-marca-agua {
+    grid-row: 2/8;
+}
+
+.footer-links {
+    grid-row: 3/5;
+
+}
+
+.footer-copyright {
+    grid-row: 7/8 ;
+}
+
+
+/*.footer-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Coloca la imagen detrás del contenido 
+    background-image: url("./assets/icons/marcaAguaFooter.png");
+    background-size: cover;
+    background-position: center center;
+}
+*/
 //FIN ESTILOS FOOTER

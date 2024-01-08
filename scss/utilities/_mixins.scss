@@ -4,6 +4,12 @@
     justify-content:$justify;
 }
 
+@mixin grid ($col,$row) {
+    display: grid;
+    grid-template-columns:$col;
+    grid-template-rows:$row;
+}
+
 @mixin typos ($family, $size, $color) {
     font-family: $family;
     font-size: $size;
