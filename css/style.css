@@ -40,6 +40,9 @@ p {
 .doce {
   font-size: 1.2rem; }
 
+.diez {
+  font-size: 1.0rem; }
+
 .centrado-vertical {
   width: 100%;
   display: flex;
@@ -143,10 +146,8 @@ p {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #25D366;
-  /* Color de fondo de WhatsApp */
+  width: 40px;
   color: #f1e9e9;
-  padding: 10px 10px;
   border: none;
   border-radius: 50px;
   font-size: 16px;
@@ -311,29 +312,23 @@ footer {
 .container-footer {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(8, 50px); }
+  grid-template-rows: repeat(4, 55px); }
 
 .footer-marca-agua {
   grid-row: 2/8; }
 
 .footer-links {
-  grid-row: 3/5; }
+  grid-row: 2/4; }
 
 .footer-copyright {
-  grid-row: 7/8; }
+  grid-row: 4/5; }
 
-/*.footer-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Coloca la imagen detrás del contenido 
-    background-image: url("./assets/icons/marcaAguaFooter.png");
-    background-size: cover;
-    background-position: center center;
-}
-*/
+.footer-icon {
+  width: 32px; }
+
+.icon-marca-agua {
+  width: 100px; }
+
 input, select {
   outline: none;
   border: 1px solid #C7B6BA;
