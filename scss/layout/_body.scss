@@ -2,6 +2,13 @@ body {
     min-height: 100vh;
 }
 
+.iconos-body {
+    width: 50px;
+}
+
+.iconos-experiencia {
+    width: 20px;
+}
 .logo-index {
     @include medidas (45%, auto, 10px, 5vh);
 }

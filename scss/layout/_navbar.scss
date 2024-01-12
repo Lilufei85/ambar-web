@@ -20,6 +20,7 @@
 }*/
 
 .toggle img {
+    margin-right: 10px;
     width: 40px; 
     height: 40px; 
     cursor: pointer;
@@ -36,6 +37,10 @@
     }
 }
 
+.logo-navbar {
+    padding-left: 10px;
+    width: 80px;
+}
 .show {
     display: block;
 }
