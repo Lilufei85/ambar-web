@@ -3,7 +3,6 @@
 
 h1 {
     @include typos ($font-1, 1.7rem, $color-2);
-    margin-top: 30px;
     margin-bottom: 10px;
     text-align: center;
     font-weight: 600;
@@ -40,4 +39,8 @@ p {
 
 .diez {
     font-size: 1.0rem;;
+}
+
+.izq {
+    text-align: start   ;
 }
