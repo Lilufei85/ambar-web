@@ -2,13 +2,6 @@ body {
     min-height: 100vh;
 }
 
-.iconos-body {
-    width: 50px;
-}
-
-.iconos-experiencia {
-    width: 20px;
-}
 .logo-index {
     @include medidas (45%, auto, 10px, 5vh);
 }
@@ -24,19 +17,28 @@ body {
     width:100%;
 }
 
-.textos {
-    margin-left:40px ;
-    margin-right:40px ;
-}
-
-
-.width-55 {
+.w-55 {
     width: 55%;   
 }
 
-.width-70 {
+.w-35 {
+    width: 35%;
+}
+
+.w-70 {
     width: 70%;
-} 
+}
+
+.w-50p { //iconos-body
+    width: 50px;
+}
+
+.w-20p { //iconos-experiencia
+    width: 20px;
+}
+
+
+
 
 .contenedor-ig {
     @include flex (row, center);
@@ -106,5 +108,6 @@ li {
 .container-servicios {
     @include flex (column, flex-start);
     row-gap: 10px;
+    width: 100%;
 }
 

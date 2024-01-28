@@ -24,6 +24,11 @@ p {
   color: #956852;
   text-align: center; }
 
+.textos {
+  margin-left: 40px;
+  margin-right: 40px;
+  text-align: justify; }
+
 .texto-grande {
   font-size: 2.7rem; }
 
@@ -202,12 +207,6 @@ p {
 body {
   min-height: 100vh; }
 
-.iconos-body {
-  width: 50px; }
-
-.iconos-experiencia {
-  width: 20px; }
-
 .logo-index {
   width: 45%;
   height: auto;
@@ -225,15 +224,20 @@ body {
 .w-100 {
   width: 100%; }
 
-.textos {
-  margin-left: 40px;
-  margin-right: 40px; }
-
-.width-55 {
+.w-55 {
   width: 55%; }
 
-.width-70 {
+.w-35 {
+  width: 35%; }
+
+.w-70 {
   width: 70%; }
+
+.w-50p {
+  width: 50px; }
+
+.w-20p {
+  width: 20px; }
 
 .contenedor-ig {
   display: flex;
@@ -304,15 +308,15 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  row-gap: 10px; }
+  row-gap: 10px;
+  width: 100%; }
 
 footer {
   background-color: #C7B6BA;
   text-align: center;
   padding-top: 25px;
   margin-top: 30px;
-  padding-bottom: 20px;
-  position: relative; }
+  padding-bottom: 20px; }
   footer p {
     font-family: "Montserrat", sans-serif;
     font-size: 1.5rem;
@@ -322,18 +326,18 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    flex-wrap: nowrap;
-    gap: 20px;
-    text-align: center;
+    width: 100%;
+    gap: 10px;
+    margin-left: 0px;
+    padding-left: 0px;
     size: adjust 100px;
-    list-style: none;
-    margin-bottom: 10px; }
+    list-style: none; }
     footer ul a {
       text-decoration: none; }
 
 .container-footer {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: fr;
   grid-template-rows: repeat(4, 55px); }
 
 .footer-marca-agua {
@@ -344,6 +348,9 @@ footer {
 
 .footer-copyright {
   grid-row: 4/5; }
+
+.footer-icon {
+  width: 32px; }
 
 .icon-marca-agua {
   width: 100px; }
